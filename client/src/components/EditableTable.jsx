@@ -41,7 +41,7 @@ const EditableTable = () => {
             <th>Losses</th>
             <th>Draws</th>
             <th>Notes</th>
-            {/* <th>Submit</th> */}
+            <th> </th>
           </tr>
         </thead>
         <tbody>

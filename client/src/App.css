@@ -65,10 +65,11 @@ h6 {
 
 .App {
   width: 100vw;
-  height: 100vh;
+  /* height: 100vh; */
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 table-div {
@@ -77,6 +78,9 @@ table-div {
 table {
   width: 100%;
   border-collapse: collapse;
+}
+th {
+  background-color: gray;
 }
 table,
 th,
@@ -92,8 +96,6 @@ td {
   width: 3rem;
   border: 1px solid lightgray;
   border-radius: 2px;
-}
-.text-input {
 }
 .button-div {
   text-align: center;
