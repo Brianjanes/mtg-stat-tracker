@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Button } from "@mui/material";
 import "../App.css";
 
-const EditableTable = () => {
+const EditableTable = ({ round }) => {
   const [data, setData] = useState({
-    round: 0,
+    round,
     matchup: "",
     wins: 0,
     losses: 0,
     draws: 0,
     notes: "",
   });
+
+  useEffect(() => {
+    // You can add additional logic here if needed when startingRound changes
+    setData((prevData) => ({
+      ...prevData,
+      round,
+    }));
+  }, [round]);
 
   const onChangeInput = (e) => {
     const { name, value } = e.target;
@@ -46,8 +55,8 @@ const EditableTable = () => {
         </thead>
         <tbody>
           <tr>
-            <td>
-              <input
+            <td className="round-table-component">
+              {/* <input
                 className="number-input"
                 name="round"
                 value={data.round}
@@ -55,7 +64,8 @@ const EditableTable = () => {
                 onChange={(e) => onChangeInput(e)}
                 placeholder="Round #"
                 min={1}
-              />
+              /> */}
+              <span>{data.round}</span>
             </td>
             <td>
               <input
@@ -67,9 +77,9 @@ const EditableTable = () => {
                 placeholder="Matchup"
               />
             </td>
-            <td>
+            <td className="win-loss-draw">
               <input
-                className="number-input"
+                className="win-loss-draw"
                 name="wins"
                 value={data.wins}
                 type="number"
@@ -79,9 +89,8 @@ const EditableTable = () => {
                 min={0}
               />
             </td>
-            <td>
+            <td className="win-loss-draw">
               <input
-                className="number-input"
                 name="losses"
                 value={data.losses}
                 type="number"
@@ -91,9 +100,9 @@ const EditableTable = () => {
                 min={0}
               />
             </td>
-            <td>
+            <td className="win-loss-draw">
               <input
-                className="number-input"
+                className="win-loss-draw"
                 name="draws"
                 value={data.draws}
                 type="number"
@@ -104,23 +113,39 @@ const EditableTable = () => {
               />
             </td>
             <td>
-              <input
+              {/* <input
                 className="text-input"
                 name="notes"
                 value={data.notes}
                 type="text"
                 onChange={(e) => onChangeInput(e)}
                 placeholder="Match Notes"
-              />
+              /> */}
+              <Button
+                variant="outlined"
+                style={{
+                  color: "whitesmoke",
+                  border: "1px solid whitesmoke",
+                  height: "2rem",
+                }}
+              >
+                Add Notes
+              </Button>
             </td>
             <td className="button-div">
-              <button
+              <Button
+                variant="outlined"
+                style={{
+                  color: "whitesmoke",
+                  border: "1px solid whitesmoke",
+                  height: "2rem",
+                }}
                 onClick={(e) => {
                   handleSubmit(e);
                 }}
               >
                 Submit
-              </button>
+              </Button>
             </td>
           </tr>
         </tbody>

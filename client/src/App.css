@@ -80,27 +80,36 @@ table {
   border-collapse: collapse;
 }
 th {
-  background-color: gray;
+  background-color: #828c96;
 }
 table,
 th,
 td {
-  border: 2px solid black;
+  border: 1px solid whitesmoke;
+  color: whitesmoke;
+}
+.round-table-component {
+  width: 2rem;
 }
 td {
   width: 8rem;
   text-align: center;
 }
-.number-input {
+.win-loss-draw {
   border: none;
-  width: 3rem;
-  border: 1px solid lightgray;
+  width: 2rem;
   border-radius: 2px;
+  border: 1px solid whitesmoke;
+  background-color: #2f4050;
+  color: whitesmoke;
+}
+input {
+  background-color: #2f4050;
+  border: 1px solid whitesmoke;
+  color: whitesmoke;
 }
 .button-div {
   text-align: center;
-  width: 8rem;
-}
-button {
-  width: 5rem;
+  width: 3rem;
+  padding: 5px;
 }

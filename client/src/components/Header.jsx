@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <Box
       sx={{
-        backgroundColor: "whitesmoke",
+        backgroundColor: "#2f4050",
         width: "100dvw",
         height: 125,
         display: "flex",
@@ -24,7 +24,7 @@ const Header = () => {
           marginLeft: 5,
         }}
       >
-        M:TG Stat Tracker
+        Brainstorm
       </Typography>
       {/* <MenuIcon
         sx={{
