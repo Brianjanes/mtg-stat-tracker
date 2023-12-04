@@ -11,11 +11,12 @@ const Footer = () => {
         height: 62.5,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "whitesmoke",
+        backgroundColor: "#2f4050",
         position: "absolute",
         left: 0,
         bottom: 0,
         right: 0,
+        color: "whitesmoke",
       }}
     >
       <Typography>
@@ -23,6 +24,7 @@ const Footer = () => {
           sx={{
             textDecoration: "none",
             fontWeight: "bold",
+            color: "whitesmoke",
           }}
           href="http://www.brianjanes.ca"
           target="_blank"

@@ -17,14 +17,14 @@ const Header = () => {
     >
       <Typography
         sx={{
-          color: "black",
           fontSize: 50,
           flex: 1,
           textAlign: "center",
           marginLeft: 5,
+          color: "whitesmoke",
         }}
       >
-        Brainstorm
+        brainstorm
       </Typography>
       {/* <MenuIcon
         sx={{
