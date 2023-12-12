@@ -100,6 +100,7 @@ td {
   border: none;
   width: 2rem;
   border-radius: 2px;
+  font-weight: bolder;
   border: 1px solid whitesmoke;
   background-color: #2f4050;
   color: whitesmoke;
@@ -108,11 +109,8 @@ input {
   background-color: #2f4050;
   border: 1px solid whitesmoke;
   color: whitesmoke;
+  border-radius: 3px;
 }
-.text-input {
-  width: auto;
-}
-
 .plus-minus-input-div {
   display: flex;
   justify-content: center;
@@ -133,6 +131,6 @@ input {
 .button-div {
   display: flex;
   justify-content: center;
-  width: 100%;
-  margin: 2rem;
+  align-items: center;
+  margin-top: 1rem;
 }
