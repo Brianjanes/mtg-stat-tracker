@@ -25,12 +25,13 @@ const EditableTable = ({ round, onRoundDataChange }) => {
     onRoundDataChange(round, { ...data, [name]: value });
   };
   console.log(data.round);
+
   return (
     <div className="table-div">
       <table>
         <thead>
           <tr>
-            <th>Round #</th>
+            <th>Round</th>
             <th>Matchup</th>
             <th>Wins</th>
             <th>Losses</th>
@@ -41,7 +42,7 @@ const EditableTable = ({ round, onRoundDataChange }) => {
         <tbody>
           <tr>
             <td className="round-table-component">
-              <span>{data.round}</span>
+              <span>{round}</span>
             </td>
             <td>
               <input
@@ -54,39 +55,51 @@ const EditableTable = ({ round, onRoundDataChange }) => {
               />
             </td>
             <td className="win-loss-draw">
-              <input
-                className="win-loss-draw"
-                name="wins"
-                value={data.wins}
-                type="number"
-                onChange={(e) => onChangeInput(e)}
-                placeholder="0"
-                max={2}
-                min={0}
-              />
+              <div className="plus-minus-input-div">
+                <div className="minus-div">-</div>
+                <input
+                  className="win-loss-draw"
+                  name="wins"
+                  value={data.wins}
+                  type="number"
+                  onChange={(e) => onChangeInput(e)}
+                  placeholder="0"
+                  max={2}
+                  min={0}
+                />
+                <div className="plus-div">+</div>
+              </div>
             </td>
             <td className="win-loss-draw">
-              <input
-                name="losses"
-                value={data.losses}
-                type="number"
-                onChange={(e) => onChangeInput(e)}
-                placeholder="0"
-                max={2}
-                min={0}
-              />
+              <div className="plus-minus-input-div">
+                <div className="minus-div">-</div>
+                <input
+                  name="losses"
+                  value={data.losses}
+                  type="number"
+                  onChange={(e) => onChangeInput(e)}
+                  placeholder="0"
+                  max={2}
+                  min={0}
+                />
+                <div className="plus-div">+</div>
+              </div>
             </td>
             <td className="win-loss-draw">
-              <input
-                className="win-loss-draw"
-                name="draws"
-                value={data.draws}
-                type="number"
-                onChange={(e) => onChangeInput(e)}
-                placeholder="0"
-                max={1}
-                min={0}
-              />
+              <div className="plus-minus-input-div">
+                <div className="minus-div">-</div>
+                <input
+                  className="win-loss-draw"
+                  name="draws"
+                  value={data.draws}
+                  type="number"
+                  onChange={(e) => onChangeInput(e)}
+                  placeholder="0"
+                  max={1}
+                  min={0}
+                />
+                <div className="plus-div">+</div>
+              </div>
             </td>
             <td>
               {/* <input

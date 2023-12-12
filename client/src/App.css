@@ -85,15 +85,16 @@ th {
 table,
 th,
 td {
+  width: auto;
   border: 1px solid whitesmoke;
   color: whitesmoke;
 }
 .round-table-component {
-  width: 2rem;
+  font-weight: bolder;
 }
 td {
-  width: 8rem;
   text-align: center;
+  padding: 0.5rem;
 }
 .win-loss-draw {
   border: none;
@@ -108,8 +109,25 @@ input {
   border: 1px solid whitesmoke;
   color: whitesmoke;
 }
+.text-input {
+  width: auto;
+}
 .button-div {
-  text-align: center;
-  width: 3rem;
-  padding: 5px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 2rem;
+}
+.plus-minus-input-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.minus-div {
+  padding: 0.5rem;
+  font-weight: bolder;
+}
+.plus-div {
+  padding: 0.5rem;
+  font-weight: bolder;
 }

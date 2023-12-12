@@ -76,17 +76,20 @@ const Landing = () => {
                 onRoundDataChange={handleRoundDataChange}
               />
             ))}
-            <Button
-              variant="outlined"
-              style={{
-                color: "whitesmoke",
-                border: "1px solid whitesmoke",
-                height: "2rem",
-              }}
-              onClick={handleTournamentSubmit}
-            >
-              Submit Tournament
-            </Button>
+            <div className="button-div">
+              <Button
+                variant="outlined"
+                style={{
+                  color: "whitesmoke",
+                  border: "1px solid whitesmoke",
+                  height: "3rem",
+                  width: "auto",
+                }}
+                onClick={handleTournamentSubmit}
+              >
+                Submit Results
+              </Button>
+            </div>
           </Box>
         </Modal>
       </form>
