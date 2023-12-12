@@ -11,6 +11,7 @@ const RoundResultsTable = ({ round, onRoundDataChange }) => {
     losses: 0,
     draws: 0,
     notes: "",
+    date: new Date().toLocaleDateString(),
   });
 
   const [isModalOpen, setModalOpen] = useState(false);
@@ -73,6 +74,7 @@ const RoundResultsTable = ({ round, onRoundDataChange }) => {
     // Call onRoundDataChange when data changes
     memoizedOnRoundDataChange(round, { ...data, notes: data.notes });
   }, [data, memoizedOnRoundDataChange, round]);
+
   return (
     <div className="table-div">
       <table>

@@ -2,9 +2,11 @@
 const express = require("express");
 const morgan = require("morgan");
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 
 const app = express();
+
+const { addTournament } = require("./handlers/TournamentHandlers");
 
 // This will give us will log more info to the console. see https://www.npmjs.com/package/morgan
 app.use(morgan("tiny"));
@@ -12,6 +14,9 @@ app.use(express.json());
 
 // Any requests for static files will go into the public folder
 app.use(express.static("public"));
+
+// These are my endpoints!
+app.post("/add-tournament", addTournament);
 
 // This is a catch all endpoint.
 app.get("*", (request, response) => {
@@ -22,4 +27,4 @@ app.get("*", (request, response) => {
 });
 
 // Node spins up our server and sets it to listen on port 8000.
-app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));

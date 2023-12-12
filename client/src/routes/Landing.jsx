@@ -42,7 +42,21 @@ const Landing = () => {
   };
 
   const handleTournamentSubmit = () => {
-    console.log(tournamentData); // Do something with the entire tournament data
+    fetch("/add-tournament", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ tournamentData }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error: ", error);
+      });
   };
 
   return (
