@@ -112,12 +112,7 @@ input {
 .text-input {
   width: auto;
 }
-.button-div {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin: 2rem;
-}
+
 .plus-minus-input-div {
   display: flex;
   justify-content: center;
@@ -126,8 +121,18 @@ input {
 .minus-div {
   padding: 0.5rem;
   font-weight: bolder;
+  cursor: pointer;
 }
 .plus-div {
   padding: 0.5rem;
   font-weight: bolder;
+  cursor: pointer;
+}
+
+/* LANDING BUTTON DIV */
+.button-div {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 2rem;
 }
