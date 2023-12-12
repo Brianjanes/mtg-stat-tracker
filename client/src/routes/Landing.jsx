@@ -1,3 +1,4 @@
+// Landing.js
 import React, { useState } from "react";
 import { Container, Typography, Button, Modal, Box } from "@mui/material";
 import EditableTable from "../components/EditableTable";
@@ -5,6 +6,7 @@ import EditableTable from "../components/EditableTable";
 const Landing = () => {
   const [showModal, setShowModal] = useState(false);
   const [numberOfRounds, setNumberOfRounds] = useState(3);
+  const [tournamentData, setTournamentData] = useState([]);
 
   const style = {
     position: "absolute",
@@ -14,7 +16,6 @@ const Landing = () => {
     width: "60%",
     bgcolor: "#2f4050",
     border: "1px solid whitesmoke",
-
     boxShadow: 24,
     p: 4,
   };
@@ -30,6 +31,18 @@ const Landing = () => {
 
   const handleInputChange = (e) => {
     setNumberOfRounds(parseInt(e.target.value, 10));
+  };
+
+  const handleRoundDataChange = (round, roundData) => {
+    setTournamentData((prevData) => {
+      const updatedData = [...prevData];
+      updatedData[round - 1] = { round, ...roundData };
+      return updatedData;
+    });
+  };
+
+  const handleTournamentSubmit = () => {
+    console.log(tournamentData); // Do something with the entire tournament data
   };
 
   return (
@@ -57,8 +70,23 @@ const Landing = () => {
           <Box sx={style}>
             {/* You can dynamically render EditableTable components here based on numberOfRounds */}
             {Array.from({ length: numberOfRounds }, (_, index) => (
-              <EditableTable key={index} round={index + 1} />
+              <EditableTable
+                key={index}
+                round={index + 1}
+                onRoundDataChange={handleRoundDataChange}
+              />
             ))}
+            <Button
+              variant="outlined"
+              style={{
+                color: "whitesmoke",
+                border: "1px solid whitesmoke",
+                height: "2rem",
+              }}
+              onClick={handleTournamentSubmit}
+            >
+              Submit Tournament
+            </Button>
           </Box>
         </Modal>
       </form>

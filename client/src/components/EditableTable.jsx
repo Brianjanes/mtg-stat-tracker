@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@mui/material";
 import "../App.css";
 
-const EditableTable = ({ round }) => {
+const EditableTable = ({ round, onRoundDataChange }) => {
   const [data, setData] = useState({
-    round,
     matchup: "",
     wins: 0,
     losses: 0,
@@ -12,59 +11,36 @@ const EditableTable = ({ round }) => {
     notes: "",
   });
 
-  useEffect(() => {
-    // You can add additional logic here if needed when startingRound changes
-    setData((prevData) => ({
-      ...prevData,
-      round,
-    }));
-  }, [round]);
-
   const onChangeInput = (e) => {
     const { name, value } = e.target;
     setData((prevData) => ({
       ...prevData,
       [name]:
-        name === "round" ||
-        name === "wins" ||
-        name === "losses" ||
-        name === "draws"
+        name === "wins" || name === "losses" || name === "draws"
           ? Number(value)
           : value,
     }));
-  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(data);
+    // Call the parent function directly
+    onRoundDataChange(round, { ...data, [name]: value });
   };
-
+  console.log(data.round);
   return (
     <div className="table-div">
       <table>
         <thead>
           <tr>
-            <th>Round </th>
+            <th>Round #</th>
             <th>Matchup</th>
             <th>Wins</th>
             <th>Losses</th>
             <th>Draws</th>
             <th>Notes</th>
-            <th> </th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td className="round-table-component">
-              {/* <input
-                className="number-input"
-                name="round"
-                value={data.round}
-                type="number"
-                onChange={(e) => onChangeInput(e)}
-                placeholder="Round #"
-                min={1}
-              /> */}
               <span>{data.round}</span>
             </td>
             <td>
@@ -132,7 +108,7 @@ const EditableTable = ({ round }) => {
                 Add Notes
               </Button>
             </td>
-            <td className="button-div">
+            {/* <td className="button-div">
               <Button
                 variant="outlined"
                 style={{
@@ -146,7 +122,7 @@ const EditableTable = ({ round }) => {
               >
                 Submit
               </Button>
-            </td>
+            </td> */}
           </tr>
         </tbody>
       </table>
