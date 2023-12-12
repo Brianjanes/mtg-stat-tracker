@@ -14,10 +14,12 @@ const Landing = () => {
     left: "50%",
     transform: "translate(-50%, -50%)",
     width: "auto",
+    height: "80%",
     bgcolor: "#2f4050",
     border: "1px solid whitesmoke",
     boxShadow: 24,
     p: 4,
+    overflowY: "scroll",
   };
 
   const addResults = (e) => {

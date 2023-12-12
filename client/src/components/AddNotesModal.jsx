@@ -53,12 +53,12 @@ const AddNotesModal = ({ onSaveNotes, onClose }) => {
             variant="outlined"
             onClick={handleDoneClick}
             style={{
-              width: "4rem",
+              width: "auto",
               border: "1px solid whitesmoke",
               color: "whitesmoke",
             }}
           >
-            Done
+            Add Notes
           </Button>
         </div>
       </Box>
