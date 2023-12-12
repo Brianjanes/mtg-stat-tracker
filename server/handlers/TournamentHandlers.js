@@ -14,23 +14,22 @@ const tournamentCollection = database.collection("tournament-results");
 // const ObjectId = require("mongodb").ObjectId;
 
 const addTournament = async (req, res) => {
-  const { round, matchup, wins, losses, draws, notes, date } = req.body;
+  console.log(req.body);
   try {
     await client.connect();
-    console.log(req.body);
-    const newTournament = { round, matchup, wins, losses, draws, notes, date };
+    const newTournament = req.body;
     const newTournamentResult = await tournamentCollection.insertOne(
       newTournament
     );
     if (!newTournamentResult.insertedId) {
       return res.status(502).json({
         status: 502,
-        message: "Brian says database Error!!",
+        message: "Database Error!!",
       });
     } else {
       return res.status(200).json({
         status: 200,
-        message: "you did a good job brian!",
+        message: "Tournament successfully added to database",
       });
     }
   } catch (error) {
