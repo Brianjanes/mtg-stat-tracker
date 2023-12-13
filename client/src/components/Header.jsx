@@ -9,7 +9,7 @@ const Header = () => {
       sx={{
         backgroundColor: "#2f4050",
         width: "100dvw",
-        height: 125,
+        height: 100,
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
@@ -24,7 +24,7 @@ const Header = () => {
           color: "whitesmoke",
         }}
       >
-        brainstorm
+        mtg stat tracker
       </Typography>
       {/* <MenuIcon
         sx={{
