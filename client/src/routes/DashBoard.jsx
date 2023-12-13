@@ -72,6 +72,7 @@ const DashBoard = () => {
       }}
     >
       <Box style={{ border: "1px solid black", width: "60%", height: "20rem" }}>
+        <h1>You are signed in now!</h1>
         <form>
           <input
             type="number"
@@ -114,7 +115,6 @@ const DashBoard = () => {
                   Submit Results
                 </Button>
               </div>
-              <h1>You are signed in now!</h1>
             </Box>
           </Modal>
         </form>
