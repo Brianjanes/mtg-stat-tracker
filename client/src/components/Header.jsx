@@ -1,9 +1,11 @@
 import React from "react";
 import Box from "@mui/material/Box";
-import { Typography } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+import { Typography, Link } from "@mui/material";
+import { useUser, UserButton } from "@clerk/clerk-react";
 
 const Header = () => {
+  const { user } = useUser();
+
   return (
     <Box
       sx={{
@@ -26,13 +28,24 @@ const Header = () => {
       >
         mtg stat tracker
       </Typography>
-      {/* <MenuIcon
-        sx={{
-          color: "black",
-          fontSize: 45,
-          marginRight: 5,
-        }}
-      /> */}
+      {!user && (
+        <div className="right-side-header">
+          <Link color="inherit" underline="none" href="/sign-in/*">
+            Sign In
+          </Link>
+          <Link color="inherit" underline="none" href="/sign-up/*">
+            Sign Up
+          </Link>
+        </div>
+      )}
+      {user && (
+        <div className="right-side-header">
+          <Link color="inherit" underline="none" href="/profile">
+            Profile
+          </Link>
+          <UserButton />
+        </div>
+      )}
     </Box>
   );
 };

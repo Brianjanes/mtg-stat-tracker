@@ -1,7 +1,12 @@
 import React from "react";
+import { UserProfile } from "@clerk/clerk-react";
 
 const Profile = () => {
-  return <div>Profile Page</div>;
+  return (
+    <>
+      <UserProfile />
+    </>
+  );
 };
 
 export default Profile;
