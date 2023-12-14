@@ -126,6 +126,27 @@ input {
   font-weight: bolder;
   cursor: pointer;
 }
+.top-modal-div {
+  display: flex;
+  flex-direction: column;
+  color: whitesmoke;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 1rem;
+}
+.top-modal-div input {
+  width: 10rem;
+}
+.top-modal-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+}
+.input-name {
+  padding-right: 1rem;
+  font-weight: bolder;
+}
 
 /* LANDING BUTTON DIV */
 .button-div {

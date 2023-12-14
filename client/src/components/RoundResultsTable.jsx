@@ -11,7 +11,6 @@ const RoundResultsTable = ({ round, onRoundDataChange }) => {
     losses: 0,
     draws: 0,
     notes: "",
-    date: new Date().toLocaleDateString(),
   });
 
   const [isModalOpen, setModalOpen] = useState(false);
@@ -62,6 +61,7 @@ const RoundResultsTable = ({ round, onRoundDataChange }) => {
   const memoizedOnRoundDataChange = useCallback(onRoundDataChange, []);
 
   const handleSaveNotes = (notes) => {
+    console.log(data);
     setData((prevData) => ({
       ...prevData,
       notes: notes,
@@ -100,7 +100,6 @@ const RoundResultsTable = ({ round, onRoundDataChange }) => {
                 value={data.matchup}
                 type="text"
                 onChange={(e) => onChangeInput(e)}
-                placeholder="Matchup"
               />
             </td>
             <td className="win-loss-draw">

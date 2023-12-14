@@ -7,6 +7,9 @@ const DashBoard = () => {
   const [showModal, setShowModal] = useState(false);
   const [numberOfRounds, setNumberOfRounds] = useState(3);
   const [tournamentData, setTournamentData] = useState([]);
+  const [tournamentName, setTournamentName] = useState("");
+  const [tournamentDate, setTournamentDate] = useState("");
+  const [tournamentLocation, setTournamentLocation] = useState("");
 
   const style = {
     position: "absolute",
@@ -44,13 +47,21 @@ const DashBoard = () => {
   };
 
   const handleTournamentSubmit = () => {
+    const tournamentDetails = {
+      tournamentName,
+      tournamentDate,
+      tournamentLocation,
+    };
+
+    const updatedTournamentData = [tournamentDetails, ...tournamentData];
+
     fetch("/add-tournament", {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ tournamentData }),
+      body: JSON.stringify({ tournamentData: updatedTournamentData }),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -94,6 +105,37 @@ const DashBoard = () => {
 
           <Modal open={showModal} onClose={handleCloseModal}>
             <Box sx={style}>
+              <div className="top-modal-div">
+                <div className="top-modal-input">
+                  <span className="input-name">Tournament Name:</span>
+                  <input
+                    id="tournamentName"
+                    value={tournamentName}
+                    type="text"
+                    onChange={(e) => setTournamentName(e.target.value)}
+                  />
+                </div>
+                <div className="top-modal-input">
+                  <span className="input-name" placeholder="Location">
+                    Tournament Location:
+                  </span>
+                  <input
+                    id="tournamentLocation"
+                    value={tournamentLocation}
+                    type="text"
+                    onChange={(e) => setTournamentLocation(e.target.value)}
+                  />
+                </div>
+                <div className="top-modal-input">
+                  <span className="input-name">Tournament Date:</span>
+                  <input
+                    id="tournamentDate"
+                    value={tournamentDate}
+                    type="date"
+                    onChange={(e) => setTournamentDate(e.target.value)}
+                  />
+                </div>
+              </div>
               {Array.from({ length: numberOfRounds }, (_, index) => (
                 <RoundResultsTable
                   key={index}
