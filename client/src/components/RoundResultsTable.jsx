@@ -157,6 +157,7 @@ const RoundResultsTable = ({ round, onRoundDataChange }) => {
               <Button
                 variant="outlined"
                 style={{
+                  backgroundColor: "#2f4050",
                   color: "whitesmoke",
                   border: "1px solid whitesmoke",
                   height: "2rem",

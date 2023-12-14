@@ -16,6 +16,9 @@ const Header = () => {
         justifyContent: "space-between",
         alignItems: "center",
         borderBottom: "2px solid whitesmoke",
+        position: "fixed",
+        top: 0,
+        right: 0,
       }}
     >
       <Typography

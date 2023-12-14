@@ -77,6 +77,8 @@ const DashBoard = () => {
       style={{
         maxWidth: "90%",
         display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
         gap: "8rem",
         maxHeight: "100hv",
         margin: "2rem",
@@ -87,12 +89,17 @@ const DashBoard = () => {
           border: "1px solid whitesmoke",
           width: "60%",
           height: "20rem",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
         <h1>You are signed in now!</h1>
         <form>
           <input
             type="number"
+            className="dashboard-number-input"
             min={3}
             max={14}
             value={numberOfRounds}
@@ -154,6 +161,7 @@ const DashBoard = () => {
                 <Button
                   variant="outlined"
                   style={{
+                    backgroundColor: "#2f4050",
                     color: "whitesmoke",
                     border: "1px solid whitesmoke",
                     height: "3rem",
