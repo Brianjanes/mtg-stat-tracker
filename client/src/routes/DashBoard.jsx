@@ -82,7 +82,13 @@ const DashBoard = () => {
         margin: "2rem",
       }}
     >
-      <Box style={{ border: "1px solid black", width: "60%", height: "20rem" }}>
+      <Box
+        style={{
+          border: "1px solid whitesmoke",
+          width: "60%",
+          height: "20rem",
+        }}
+      >
         <h1>You are signed in now!</h1>
         <form>
           <input
@@ -95,8 +101,9 @@ const DashBoard = () => {
           <Button
             variant="outlined"
             style={{
-              border: "1px solid #2f4050",
+              border: "1px solid whitesmoke",
               height: "2rem",
+              color: "whitesmoke",
             }}
             onClick={(e) => addResults(e)}
           >
@@ -161,7 +168,13 @@ const DashBoard = () => {
           </Modal>
         </form>
       </Box>
-      <Box style={{ width: "60%", border: "1px solid black", height: "20rem" }}>
+      <Box
+        style={{
+          width: "60%",
+          border: "1px solid whitesmoke",
+          height: "20rem",
+        }}
+      >
         <Typography>TESTING LAYOUT</Typography>
       </Box>
     </Container>

@@ -15,6 +15,7 @@ const Header = () => {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
+        borderBottom: "2px solid whitesmoke",
       }}
     >
       <Typography
@@ -30,7 +31,7 @@ const Header = () => {
       </Typography>
       {!user && (
         <div className="right-side-header">
-          <Link color="inherit" underline="none" href="/sign-in/*">
+          <Link underline="none" href="/sign-in/*">
             Sign In
           </Link>
           <Link color="inherit" underline="none" href="/sign-up/*">
