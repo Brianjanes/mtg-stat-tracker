@@ -39,4 +39,26 @@ const addTournament = async (req, res) => {
   }
 };
 
-module.exports = { addTournament };
+const getTournaments = async (req, res) => {
+  try {
+    await client.connect();
+
+    const tournamentData = await tournamentCollection.find().toArray();
+    if (!tournamentData) {
+      return res.status(404).json({
+        status: 404,
+        message: "No tournaments found.",
+      });
+    } else {
+      return res.status(200).json({
+        status: 200,
+        message: "Success",
+        data: tournamentData,
+      });
+    }
+  } catch (error) {
+    console.error("Error: ", error);
+  }
+};
+
+module.exports = { addTournament, getTournaments };

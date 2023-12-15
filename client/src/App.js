@@ -2,6 +2,8 @@ import "./App.css";
 import Header from "./components/Header";
 import DashBoard from "./routes/DashBoard";
 import Landing from "./routes/Landing";
+import React from "react";
+import useGetTournaments from "./hooks/useGetTournaments";
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import {
   ClerkProvider,
@@ -21,18 +23,18 @@ if (!process.env.REACT_APP_CLERK_PUBLISHABLE_KEY) {
 
 const clerkPubKey = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY;
 
-function ProtectedPage() {
-  return (
-    <>
-      <h1>Protected page</h1>
-      <UserButton />
-    </>
-  );
-}
+// function ProtectedPage() {
+//   return (
+//     <>
+//       <h1>Protected page</h1>
+//       <UserButton />
+//     </>
+//   );
+// }
 
 function ClerkProviderWithRoutes() {
   const navigate = useNavigate();
-
+  const savedTournamentData = useGetTournaments();
   return (
     <ClerkProvider publishableKey={clerkPubKey} navigate={(to) => navigate(to)}>
       <div className="App">
@@ -48,7 +50,10 @@ function ClerkProviderWithRoutes() {
             element={<SignUp routing="path" path="/sign-up" />}
           />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/dashboard" element={<DashBoard />} />
+          <Route
+            path="/dashboard"
+            element={<DashBoard savedTournamentData={savedTournamentData} />}
+          />
           <Route
             path="/protected"
             element={

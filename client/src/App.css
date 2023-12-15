@@ -128,6 +128,14 @@ input {
   font-weight: bolder;
   cursor: pointer;
 }
+.top-modal-close {
+  width: 100%;
+  display: flex;
+  color: whitesmoke;
+  justify-content: flex-end;
+  align-items: flex-end;
+  cursor: pointer;
+}
 .top-modal-div {
   display: flex;
   flex-direction: column;

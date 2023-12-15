@@ -6,7 +6,10 @@ const PORT = process.env.PORT || 8000;
 
 const app = express();
 
-const { addTournament } = require("./handlers/TournamentHandlers");
+const {
+  addTournament,
+  getTournaments,
+} = require("./handlers/TournamentHandlers");
 
 // This will give us will log more info to the console. see https://www.npmjs.com/package/morgan
 app.use(morgan("tiny"));
@@ -17,6 +20,7 @@ app.use(express.static("public"));
 
 // These are my endpoints!
 app.post("/add-tournament", addTournament);
+app.get("/get-tournaments", getTournaments);
 
 // This is a catch all endpoint.
 app.get("*", (request, response) => {

@@ -2,8 +2,9 @@
 import React, { useState } from "react";
 import { Container, Typography, Button, Modal, Box } from "@mui/material";
 import RoundResultsTable from "../components/RoundResultsTable";
+import CloseIcon from "@mui/icons-material/Close";
 
-const DashBoard = () => {
+const DashBoard = ({ savedTournamentData }) => {
   const [showModal, setShowModal] = useState(false);
   const [numberOfRounds, setNumberOfRounds] = useState(3);
   const [tournamentData, setTournamentData] = useState([]);
@@ -54,6 +55,12 @@ const DashBoard = () => {
     };
 
     const updatedTournamentData = [tournamentDetails, ...tournamentData];
+    const updatedTournamentTest = {
+      ...tournamentDetails,
+      tournamentData: tournamentData,
+    };
+
+    console.log(updatedTournamentTest);
 
     fetch("/add-tournament", {
       method: "POST",
@@ -71,7 +78,7 @@ const DashBoard = () => {
         console.error("Error: ", error);
       });
   };
-
+  console.log(tournamentData);
   return (
     <Container
       style={{
@@ -120,6 +127,13 @@ const DashBoard = () => {
           <Modal open={showModal} onClose={handleCloseModal}>
             <Box sx={style}>
               <div className="top-modal-div">
+                <div className="top-modal-close">
+                  <CloseIcon
+                    onClick={() => {
+                      setShowModal(false);
+                    }}
+                  />
+                </div>
                 <div className="top-modal-input">
                   <span className="input-name">Tournament Name:</span>
                   <input
