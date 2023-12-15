@@ -60,7 +60,6 @@ const RoundResultsTable = ({ round, onRoundDataChange }) => {
   const memoizedOnRoundDataChange = useCallback(onRoundDataChange, []);
 
   const handleSaveNotes = (notes) => {
-    console.log(data);
     setData((prevData) => ({
       ...prevData,
       notes: notes,

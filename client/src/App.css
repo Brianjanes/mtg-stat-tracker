@@ -151,7 +151,7 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem;
+  margin: 0.5rem;
 }
 .input-name {
   padding-right: 1rem;

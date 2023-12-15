@@ -10,6 +10,7 @@ const DashBoard = ({ savedTournamentData }) => {
   const [tournamentData, setTournamentData] = useState([]);
   const [tournamentName, setTournamentName] = useState("");
   const [tournamentDate, setTournamentDate] = useState("");
+  const [deckName, setDeckName] = useState("");
   const [tournamentLocation, setTournamentLocation] = useState("");
 
   const style = {
@@ -52,15 +53,15 @@ const DashBoard = ({ savedTournamentData }) => {
       tournamentName,
       tournamentDate,
       tournamentLocation,
+      deckName,
     };
 
-    const updatedTournamentData = [tournamentDetails, ...tournamentData];
-    const updatedTournamentTest = {
+    const updatedTournamentData = {
       ...tournamentDetails,
       tournamentData: tournamentData,
     };
 
-    console.log(updatedTournamentTest);
+    console.log(updatedTournamentData);
 
     fetch("/add-tournament", {
       method: "POST",
@@ -72,13 +73,16 @@ const DashBoard = ({ savedTournamentData }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        if (data.res.status === 200) {
+          console.log("Successfully added tournament to Database.");
+        } else {
+          console.log("Status code not 200 while adding new tournament.");
+        }
       })
       .catch((error) => {
         console.error("Error: ", error);
       });
   };
-  console.log(tournamentData);
   return (
     <Container
       style={{
@@ -132,6 +136,15 @@ const DashBoard = ({ savedTournamentData }) => {
                     onClick={() => {
                       setShowModal(false);
                     }}
+                  />
+                </div>
+                <div className="top-modal-input">
+                  <span className="input-name">Deck Name:</span>
+                  <input
+                    id="deckName"
+                    value={deckName}
+                    type="text"
+                    onChange={(e) => setDeckName(e.target.value)}
                   />
                 </div>
                 <div className="top-modal-input">
