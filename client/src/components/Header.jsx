@@ -34,7 +34,7 @@ const Header = () => {
       </Typography>
       {!user && (
         <div className="right-side-header">
-          <Link underline="none" href="/sign-in/*">
+          <Link color="inherit" underline="none" href="/sign-in/*">
             Sign In
           </Link>
           <Link color="inherit" underline="none" href="/sign-up/*">

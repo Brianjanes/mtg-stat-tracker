@@ -11,6 +11,8 @@ const {
   getTournaments,
 } = require("./handlers/TournamentHandlers");
 
+const { createNewUser } = require("./handlers/UserHandlers");
+
 // This will give us will log more info to the console. see https://www.npmjs.com/package/morgan
 app.use(morgan("tiny"));
 app.use(express.json());
@@ -21,6 +23,7 @@ app.use(express.static("public"));
 // These are my endpoints!
 app.post("/add-tournament", addTournament);
 app.get("/get-tournaments", getTournaments);
+app.post("/addUser", createNewUser);
 
 // This is a catch all endpoint.
 app.get("*", (request, response) => {

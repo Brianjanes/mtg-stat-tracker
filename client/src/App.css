@@ -172,12 +172,13 @@ input {
 
 /* HEADER STYLES */
 .right-side-header {
-  width: 6rem;
+  width: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-weight: bold;
   color: whitesmoke;
   text-decoration: none;
-  margin-right: 2rem;
+  margin-right: 1rem;
+  gap: 1rem;
 }

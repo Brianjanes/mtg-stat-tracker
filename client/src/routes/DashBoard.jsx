@@ -1,19 +1,59 @@
 // Landing.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Typography, Button, Modal, Box } from "@mui/material";
 import RoundResultsTable from "../components/RoundResultsTable";
 import CloseIcon from "@mui/icons-material/Close";
+import { useUser } from "@clerk/clerk-react";
 
 const DashBoard = ({ savedTournamentData }) => {
   const [showModal, setShowModal] = useState(false);
   const [numberOfRounds, setNumberOfRounds] = useState(3);
-  const [tournamentData, setTournamentData] = useState([]);
+  const [tournamentResults, setTournamentResults] = useState([]);
   const [tournamentName, setTournamentName] = useState("");
   const [tournamentDate, setTournamentDate] = useState("");
   const [deckName, setDeckName] = useState("");
   const [tournamentLocation, setTournamentLocation] = useState("");
+  const { user } = useUser();
 
-  const style = {
+  useEffect(() => {
+    if (user) {
+      fetch(`/addUser`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userEmail: user?.emailAddresses[0].emailAddress,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data.message);
+        });
+    }
+  }, [user]);
+
+  const buttonStyle = {
+    backgroundColor: "#2f4050",
+    color: "whitesmoke",
+    border: "1px solid whitesmoke",
+    height: "3rem",
+    width: "auto",
+  };
+
+  const boxStyle = {
+    border: "1px solid whitesmoke",
+    width: "60%",
+    height: "20rem",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    boxShadow: "0px 0px 4px 3px rgba(0,0,0,0.4)",
+  };
+
+  const modalBoxStyle = {
     position: "absolute",
     top: "50%",
     left: "50%",
@@ -41,7 +81,7 @@ const DashBoard = ({ savedTournamentData }) => {
   };
 
   const handleRoundDataChange = (round, roundData) => {
-    setTournamentData((prevData) => {
+    setTournamentResults((prevData) => {
       const updatedData = [...prevData];
       updatedData[round - 1] = { round, ...roundData };
       return updatedData;
@@ -49,7 +89,7 @@ const DashBoard = ({ savedTournamentData }) => {
   };
 
   const handleTournamentSubmit = () => {
-    const tournamentDetails = {
+    const tournamentMetaData = {
       tournamentName,
       tournamentDate,
       tournamentLocation,
@@ -57,8 +97,12 @@ const DashBoard = ({ savedTournamentData }) => {
     };
 
     const updatedTournamentData = {
-      ...tournamentDetails,
-      tournamentData: tournamentData,
+      tournaments: [
+        {
+          tournamentMetaData: tournamentMetaData,
+          tournamentResults: tournamentResults,
+        },
+      ],
     };
 
     console.log(updatedTournamentData);
@@ -69,11 +113,14 @@ const DashBoard = ({ savedTournamentData }) => {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ tournamentData: updatedTournamentData }),
+      body: JSON.stringify({
+        userEmail: user?.emailAddresses[0].emailAddress,
+        ...updatedTournamentData,
+      }),
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.res.status === 200) {
+        if (data.status === 200) {
           console.log("Successfully added tournament to Database.");
         } else {
           console.log("Status code not 200 while adding new tournament.");
@@ -95,17 +142,7 @@ const DashBoard = ({ savedTournamentData }) => {
         margin: "2rem",
       }}
     >
-      <Box
-        style={{
-          border: "1px solid whitesmoke",
-          width: "60%",
-          height: "20rem",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <Box style={boxStyle}>
         <h1>You are signed in now!</h1>
         <form>
           <input
@@ -129,7 +166,7 @@ const DashBoard = ({ savedTournamentData }) => {
           </Button>
 
           <Modal open={showModal} onClose={handleCloseModal}>
-            <Box sx={style}>
+            <Box sx={modalBoxStyle}>
               <div className="top-modal-div">
                 <div className="top-modal-close">
                   <CloseIcon
@@ -187,13 +224,7 @@ const DashBoard = ({ savedTournamentData }) => {
               <div className="button-div">
                 <Button
                   variant="outlined"
-                  style={{
-                    backgroundColor: "#2f4050",
-                    color: "whitesmoke",
-                    border: "1px solid whitesmoke",
-                    height: "3rem",
-                    width: "auto",
-                  }}
+                  style={buttonStyle}
                   onClick={handleTournamentSubmit}
                 >
                   Submit Results
@@ -203,13 +234,7 @@ const DashBoard = ({ savedTournamentData }) => {
           </Modal>
         </form>
       </Box>
-      <Box
-        style={{
-          width: "60%",
-          border: "1px solid whitesmoke",
-          height: "20rem",
-        }}
-      >
+      <Box style={boxStyle}>
         <Typography>TESTING LAYOUT</Typography>
       </Box>
     </Container>
