@@ -46,8 +46,6 @@ const createNewUser = async (req, res) => {
     }
   } catch (error) {
     console.error("Error: ", error);
-  } finally {
-    client.close();
   }
 };
 module.exports = { createNewUser };

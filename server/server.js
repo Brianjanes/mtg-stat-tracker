@@ -22,7 +22,7 @@ app.use(express.static("public"));
 
 // These are my endpoints!
 app.post("/add-tournament", addTournament);
-app.get("/get-tournaments", getTournaments);
+app.get("/get-tournaments/:email", getTournaments);
 app.post("/addUser", createNewUser);
 
 // This is a catch all endpoint.

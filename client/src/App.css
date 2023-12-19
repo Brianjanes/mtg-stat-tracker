@@ -182,3 +182,9 @@ input {
   margin-right: 1rem;
   gap: 1rem;
 }
+.loading-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 60dvh;
+}

@@ -53,6 +53,27 @@ const addTournament = async (req, res) => {
 };
 
 const getTournaments = async (req, res) => {
+  const userEmail = req.params.email;
+  try {
+    await client.connect();
+    const findUser = await brainstormDB.findOne({ userEmail: userEmail });
+    if (!findUser) {
+      return res.status(404).json({
+        status: 404,
+        message: "User not found, can't get tournament information",
+      });
+    } else {
+      return res.status(200).json({
+        status: 200,
+        message: "Successfully fetched tournament information",
+        data: findUser.tournaments,
+      });
+    }
+  } catch (error) {
+    console.log("Error: ", error);
+  } finally {
+    client.close();
+  }
   // try {
   //   await client.connect();
   //   const tournamentData = await tournamentCollection.find().toArray();

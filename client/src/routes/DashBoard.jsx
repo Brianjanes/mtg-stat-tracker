@@ -4,6 +4,7 @@ import { Container, Typography, Button, Modal, Box } from "@mui/material";
 import RoundResultsTable from "../components/RoundResultsTable";
 import CloseIcon from "@mui/icons-material/Close";
 import { useUser } from "@clerk/clerk-react";
+import PastTournamentDisplay from "../components/PastTournamentDisplay";
 
 const DashBoard = ({ savedTournamentData }) => {
   const [showModal, setShowModal] = useState(false);
@@ -13,26 +14,11 @@ const DashBoard = ({ savedTournamentData }) => {
   const [tournamentDate, setTournamentDate] = useState("");
   const [deckName, setDeckName] = useState("");
   const [tournamentLocation, setTournamentLocation] = useState("");
+  const [pastTournaments, setPastTournaments] = useState("");
+
   const { user } = useUser();
 
-  useEffect(() => {
-    if (user) {
-      fetch(`/addUser`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userEmail: user?.emailAddresses[0].emailAddress,
-        }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data.message);
-        });
-    }
-  }, [user]);
+  const currentUserEmail = user?.emailAddresses[0].emailAddress;
 
   const buttonStyle = {
     backgroundColor: "#2f4050",
@@ -44,13 +30,15 @@ const DashBoard = ({ savedTournamentData }) => {
 
   const boxStyle = {
     border: "1px solid whitesmoke",
+    borderRadius: "5px",
     width: "60%",
-    height: "20rem",
+    maxHeight: "90dvh - 100px",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     boxShadow: "0px 0px 4px 3px rgba(0,0,0,0.4)",
+    overflowY: "scroll",
   };
 
   const modalBoxStyle = {
@@ -66,6 +54,29 @@ const DashBoard = ({ savedTournamentData }) => {
     p: 4,
     overflowY: "scroll",
   };
+
+  useEffect(() => {
+    if (user) {
+      fetch(`/addUser`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userEmail: currentUserEmail,
+        }),
+      });
+      fetch(`/get-tournaments/${currentUserEmail}`)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.status === 200) {
+            setPastTournaments(data.data);
+            return;
+          }
+        });
+    }
+  }, [user]);
 
   const addResults = (e) => {
     e.preventDefault();
@@ -105,8 +116,6 @@ const DashBoard = ({ savedTournamentData }) => {
       ],
     };
 
-    console.log(updatedTournamentData);
-
     fetch("/add-tournament", {
       method: "POST",
       headers: {
@@ -114,7 +123,7 @@ const DashBoard = ({ savedTournamentData }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        userEmail: user?.emailAddresses[0].emailAddress,
+        userEmail: currentUserEmail,
         ...updatedTournamentData,
       }),
     })
@@ -235,7 +244,7 @@ const DashBoard = ({ savedTournamentData }) => {
         </form>
       </Box>
       <Box style={boxStyle}>
-        <Typography>TESTING LAYOUT</Typography>
+        <PastTournamentDisplay pastTournaments={pastTournaments} />
       </Box>
     </Container>
   );
