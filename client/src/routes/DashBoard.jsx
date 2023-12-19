@@ -28,17 +28,31 @@ const DashBoard = ({ savedTournamentData }) => {
     width: "auto",
   };
 
-  const boxStyle = {
+  const leftBoxStyle = {
     border: "1px solid whitesmoke",
+    color: "whitesmoke",
+    backgroundColor: "#2f4050",
     borderRadius: "5px",
-    width: "60%",
+    width: "40%",
     maxHeight: "90dvh - 100px",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     boxShadow: "0px 0px 4px 3px rgba(0,0,0,0.4)",
-    overflowY: "scroll",
+  };
+  const rigthBoxStyle = {
+    border: "1px solid whitesmoke",
+    color: "whitesmoke",
+    backgroundColor: "#2f4050",
+    borderRadius: "5px",
+    width: "100%",
+    maxHeight: "90dvh - 100px",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    boxShadow: "0px 0px 4px 3px rgba(0,0,0,0.4)",
   };
 
   const modalBoxStyle = {
@@ -53,6 +67,16 @@ const DashBoard = ({ savedTournamentData }) => {
     boxShadow: 24,
     p: 4,
     overflowY: "scroll",
+  };
+
+  const containerStyle = {
+    maxWidth: "90%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "8rem",
+    maxHeight: "100hv",
+    margin: "2rem",
   };
 
   useEffect(() => {
@@ -140,19 +164,9 @@ const DashBoard = ({ savedTournamentData }) => {
       });
   };
   return (
-    <Container
-      style={{
-        maxWidth: "90%",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        gap: "8rem",
-        maxHeight: "100hv",
-        margin: "2rem",
-      }}
-    >
-      <Box style={boxStyle}>
-        <h1>You are signed in now!</h1>
+    <Container style={containerStyle}>
+      <Box style={leftBoxStyle}>
+        <h2>Select a number of rounds for your tournament</h2>
         <form>
           <input
             type="number"
@@ -243,7 +257,7 @@ const DashBoard = ({ savedTournamentData }) => {
           </Modal>
         </form>
       </Box>
-      <Box style={boxStyle}>
+      <Box style={rigthBoxStyle}>
         <PastTournamentDisplay pastTournaments={pastTournaments} />
       </Box>
     </Container>

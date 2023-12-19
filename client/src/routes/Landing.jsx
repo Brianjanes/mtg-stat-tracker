@@ -7,6 +7,16 @@ const Landing = () => {
   const { user } = useUser();
   const navigate = useNavigate();
 
+  const containerStyle = {
+    maxWidth: "90%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "8rem",
+    maxHeight: "100hv",
+    margin: "2rem",
+  };
+
   if (user) {
     navigate("/dashboard");
   } else if (!user) {
@@ -14,7 +24,7 @@ const Landing = () => {
     return (
       <>
         {!user && (
-          <Container>
+          <Container style={containerStyle}>
             <Box>
               <h1>You aren't logged in</h1>
             </Box>

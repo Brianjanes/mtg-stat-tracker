@@ -1,7 +1,7 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import { Typography, Link } from "@mui/material";
-import { useUser, UserButton, SignOutButton } from "@clerk/clerk-react";
+import { useUser, UserButton } from "@clerk/clerk-react";
 
 const Header = () => {
   const { user } = useUser();
@@ -47,7 +47,7 @@ const Header = () => {
           <Link color="inherit" underline="none" href="/profile">
             Profile
           </Link>
-          <SignOutButton afterSignOutUrl="/" />
+
           <UserButton />
         </div>
       )}
